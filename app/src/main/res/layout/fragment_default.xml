@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/mouse-up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_up"
+        app:layout_constraintBottom_toTopOf="@+id/mouse-right"
+        app:layout_constraintEnd_toStartOf="@+id/mouse-right"
+        app:layout_constraintStart_toEndOf="@+id/mouse-left" />
+
+    <Button
+        android:id="@+id/mouse-down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_down"
+        app:layout_constraintStart_toEndOf="@+id/mouse-left"
+        app:layout_constraintTop_toBottomOf="@+id/mouse-left" />
+
+    <Button
+        android:id="@+id/mouse-right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="47dp"
+        android:text="@string/button_right"
+        app:layout_constraintBottom_toBottomOf="@+id/mouse-down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mouse-up" />
+
+    <Button
+        android:id="@+id/mouse-left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mouse-up"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/netflix-intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/netflix_skip_intro"
+        app:layout_constraintStart_toEndOf="@+id/mouse-down"
+        app:layout_constraintTop_toBottomOf="@+id/mouse-down" />
+
+    <Button
+        android:id="@+id/left-click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="33dp"
+        android:text="@string/button_left_click"
+        app:layout_constraintBottom_toTopOf="@+id/mouse-up"
+        app:layout_constraintEnd_toEndOf="parent" />
+</android.support.constraint.ConstraintLayout>

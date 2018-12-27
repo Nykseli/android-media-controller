@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">XLinuxTools</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">XLinuxTools</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Menu items -->
+    <string name="menu_default">Default</string>
+    <string name="menu_netflix">Netflix</string>
+
+    <!-- Arrow buttons -->
+    <string name="button_up">Up</string>
+    <string name="button_down">Down</string>
+    <string name="button_left">Left</string>
+    <string name="button_right">Right</string>
+
+    <!-- General clicks -->
+    <string name="button_left_click">Left Click</string>
+
+    <!-- Netflix buttons-->
+    <string name="netflix_skip_intro">Skip Intro</string>
+
+</resources>
