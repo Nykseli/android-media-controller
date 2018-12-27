@@ -65,6 +65,15 @@ public class WebSocket extends WebSocketClient{
             case SKIP_NETFLIX_INTRO:
                 commandString = sc.skipNetflixIntro();
                 break;
+            case NEXT_NETFLIX_EPISODE:
+                commandString = sc.nextNetflixEpisode();
+                break;
+            case REWIND_NETFLIX_BACKWARD:
+                commandString = sc.rewindNetflixBackward();
+                break;
+            case FAST_NETFLIX_FORWARD:
+                commandString = sc.fastNetflixForward();
+                break;
             default:
                 break;
         }

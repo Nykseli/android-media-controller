@@ -18,13 +18,7 @@ public class DefaultButtonHandler extends AbstractButton {
         this.setMouseUp();
         this.setMouseRight();
         this.setMouseLeft();
-        this.setSkipNetflixIntro();
         this.setLeftClick();
-    }
-
-    private void setSkipNetflixIntro(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_intro), Commands.SKIP_NETFLIX_INTRO);
-
     }
 
     private void setLeftClick(){

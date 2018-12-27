@@ -17,15 +17,24 @@ public class NetflixButtonHandler extends AbstractButton {
     @Override
     public void initButtons() {
         this.setSkipNetflixIntro();
+        this.setNextNetflixEpisode();
+        this.setRewindNetflixBackward();
+        this.setFastNetfixForward();
     }
 
     private void setSkipNetflixIntro(){
-        Button netflix = (Button) this.view.findViewById(R.id.netflix_intro);
-        netflix.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Log.d("Netflix Button", "onClick: skip netflix");
-                MainActivity.webSocket.sendCommand(Commands.SKIP_NETFLIX_INTRO);
-            }
-        });
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_intro), Commands.SKIP_NETFLIX_INTRO);
+    }
+
+    private void setNextNetflixEpisode(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_episode), Commands.NEXT_NETFLIX_EPISODE);
+    }
+
+    private void setRewindNetflixBackward(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.REWIND_NETFLIX_BACKWARD);
+    }
+
+    private void setFastNetfixForward(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.FAST_NETFLIX_FORWARD);
     }
 }

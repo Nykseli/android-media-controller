@@ -31,4 +31,16 @@ public class SocketCommands {
         return "[{\"command\": \"setMousePosition\", \"x\": 1748, \"y\": 884 }," + this.mouseLeftClick() + "]";
     }
 
+    public String nextNetflixEpisode(){
+        return "[{\"command\": \"setMousePosition\", \"x\": 1487, \"y\": 1013 }," + this.mouseLeftClick() + "]";
+    }
+
+    public String rewindNetflixBackward(){
+        return "[{\"command\": \"setMousePosition\", \"x\": 205, \"y\": 1011 }," + this.mouseLeftClick() + "]";
+    }
+
+    public String fastNetflixForward(){
+        return "[{\"command\": \"setMousePosition\", \"x\": 324, \"y\": 1020 }," + this.mouseLeftClick() + "]";
+    }
+
 }

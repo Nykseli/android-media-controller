@@ -45,23 +45,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/netflix-intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/netflix_skip_intro"
-        app:layout_constraintStart_toEndOf="@+id/mouse-down"
-        app:layout_constraintTop_toBottomOf="@+id/mouse-down" />
+    <!--<Button-->
+    <!--android:id="@+id/netflix-intro"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="1dp"-->
+    <!--android:layout_marginTop="28dp"-->
+    <!--android:text="@string/netflix_skip_intro"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/mouse-down"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/mouse-down" />-->
 
     <Button
         android:id="@+id/left-click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="54dp"
         android:layout_marginBottom="33dp"
         android:text="@string/button_left_click"
         app:layout_constraintBottom_toTopOf="@+id/mouse-up"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/mouse-up" />
 </android.support.constraint.ConstraintLayout>

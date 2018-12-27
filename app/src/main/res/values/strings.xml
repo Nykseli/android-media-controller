@@ -22,5 +22,8 @@
 
     <!-- Netflix buttons-->
     <string name="netflix_skip_intro">Skip Intro</string>
+    <string name="netflix_next_episode">Next Episode</string>
+    <string name="netflix_fast_forward">Fast forward</string>
+    <string name="netflix_rewind">Rewind</string>
 
 </resources>

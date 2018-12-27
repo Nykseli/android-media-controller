@@ -4,64 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout_editor_absoluteY="81dp">
 
-    <!--<Button-->
-    <!--android:id="@+id/mouse-up"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/button_up"-->
-    <!--app:layout_constraintBottom_toTopOf="@+id/mouse-right"-->
-    <!--app:layout_constraintEnd_toStartOf="@+id/mouse-right"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/mouse-left" />-->
-
-    <!--<Button-->
-    <!--android:id="@+id/mouse-down"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/button_down"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/mouse-left"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/mouse-left" />-->
-
-    <!--<Button-->
-    <!--android:id="@+id/mouse-right"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="6dp"-->
-    <!--android:layout_marginBottom="47dp"-->
-    <!--android:text="@string/button_right"-->
-    <!--app:layout_constraintBottom_toBottomOf="@+id/mouse-down"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toEndOf="@+id/mouse-up" />-->
-
-    <!--<Button-->
-    <!--android:id="@+id/mouse-left"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/button_left"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toStartOf="@+id/mouse-up"-->
-    <!--app:layout_constraintHorizontal_chainStyle="packed"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
-        android:id="@+id/netflix-intro"
+        android:id="@+id/netflix_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="37dp"
         android:text="@string/netflix_skip_intro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/netflix_forward"
+        app:layout_constraintStart_toStartOf="@+id/netflix_forward"
+        app:layout_constraintTop_toBottomOf="@+id/netflix_forward" />
 
-    <!--<Button-->
-    <!--android:id="@+id/left-click"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="232dp"-->
-    <!--android:layout_marginTop="104dp"-->
-    <!--android:text="@string/button_left_click"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <Button
+        android:id="@+id/netflix_episode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginBottom="109dp"
+        android:text="@string/netflix_next_episode"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/netflix_backward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginBottom="35dp"
+        android:text="@string/netflix_rewind"
+        app:layout_constraintBottom_toTopOf="@+id/netflix_episode"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/netflix_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="38dp"
+        android:text="@string/netflix_fast_forward"
+        app:layout_constraintBottom_toBottomOf="@+id/netflix_backward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/netflix_backward" />
+
 </android.support.constraint.ConstraintLayout>
