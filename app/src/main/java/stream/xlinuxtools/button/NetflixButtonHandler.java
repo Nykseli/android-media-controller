@@ -19,7 +19,7 @@ public class NetflixButtonHandler extends AbstractButton {
         this.setSkipNetflixIntro();
         this.setNextNetflixEpisode();
         this.setRewindNetflixBackward();
-        this.setFastNetfixForward();
+        this.setFastNetflixForward();
     }
 
     private void setSkipNetflixIntro(){
@@ -34,7 +34,7 @@ public class NetflixButtonHandler extends AbstractButton {
         this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.REWIND_NETFLIX_BACKWARD);
     }
 
-    private void setFastNetfixForward(){
+    private void setFastNetflixForward(){
         this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.FAST_NETFLIX_FORWARD);
     }
 }

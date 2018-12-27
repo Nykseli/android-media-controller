@@ -1,6 +1,7 @@
 package stream.xlinuxtools;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +18,8 @@ import java.net.URI;
 
 import stream.xlinuxtools.fragment.DefaultFragment;
 import stream.xlinuxtools.fragment.NetflixFragment;
+import stream.xlinuxtools.fragment.SettingsFragment;
+import stream.xlinuxtools.util.PreferenceStorage;
 import stream.xlinuxtools.websocket.WebSocket;
 
 
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static WebSocket webSocket;
+    public static PreferenceStorage preferenceStorage;
     private NavigationView navigationView;
 
 
@@ -33,14 +38,28 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        try {
-            // desktop
-            webSocket = new WebSocket(new URI("ws://192.168.0.19:9000"));
-            // nuc
-            // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
-            webSocket.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
+//        try {
+//            // desktop
+//            webSocket = new WebSocket(new URI("ws://192.168.0.19:9000"));
+//            // nuc
+//            // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
+//            webSocket.connect();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        preferenceStorage = new PreferenceStorage(this);
+
+        if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){
+            try {
+                // desktop
+                webSocket = new WebSocket(new URI(preferenceStorage.getString("WEB_SOCKET_URL") ));
+                // nuc
+                // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
+                webSocket.connect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -84,6 +103,17 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.container, new SettingsFragment());
+            ft.commit();
+
+            // Set topMargin to container so the the toolbar doesn't overlap with the first item
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) getResources().getDimension(R.dimen.activity_vertical_margin) + 20, getResources().getDisplayMetrics());
+            ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.container);
+            layout.setPadding(0, topMargin, 0, 0);
+
+            getSupportActionBar().setTitle("Settings");
+
             return true;
         }
 
