@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setTitle("Settings");
 
             return true;
+        }else if(id == R.id.action_connect_socket) {
+            webSocket.reconnect();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
