@@ -13,13 +13,17 @@ public class WebSocket extends WebSocketClient{
 
     private static WebSocket webSocket;
 
-    private static SocketCommands sc;
+    private static SocketCommands sc = new SocketCommands();
+    private static WebSocketDataGetter dataGetter = null;
 
+
+    public WebSocket(URI serverUri, WebSocketDataGetter dGetter){
+        super(serverUri);
+        dataGetter = dGetter;
+    }
 
     public WebSocket(URI serverUri) {
         super(serverUri);
-        sc = new SocketCommands();
-
     }
 
     @Override
@@ -30,6 +34,7 @@ public class WebSocket extends WebSocketClient{
     @Override
     public void onMessage(String message) {
         Log.d(TAG, "onMessage: " + message);
+        dataGetter.parseJson(message);
     }
 
     @Override
@@ -42,7 +47,7 @@ public class WebSocket extends WebSocketClient{
         ex.printStackTrace();
     }
 
-    public void sendCommand(Commands command){
+    public void sendCommand(Commands command, String additionalInfo){
 
         String commandString = null;
 
@@ -73,6 +78,14 @@ public class WebSocket extends WebSocketClient{
                 break;
             case FAST_NETFLIX_FORWARD:
                 commandString = sc.fastNetflixForward();
+                break;
+            case GET_FILES_AND_FOLDERS:
+                // Additional info is the absolute path of the folder that we want to browse
+                commandString = sc.getFilesFromFolder(additionalInfo);
+                break;
+            case PLAY_FILE:
+                // Additional info is the absolute path of the file we want to play
+                commandString = sc.playFile(additionalInfo);
                 break;
             default:
                 break;

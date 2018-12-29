@@ -23,7 +23,16 @@ public abstract class AbstractButton {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.webSocket.sendCommand(command);
+                MainActivity.webSocket.sendCommand(command, null);
+            }
+        });
+    }
+
+    public void setSingleClickButton(Button button, final Commands command, final String additionalInfo){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.webSocket.sendCommand(command, additionalInfo);
             }
         });
     }
@@ -32,7 +41,7 @@ public abstract class AbstractButton {
     public void setHoldableButton(Button button, final Commands command){
         button.setOnTouchListener(new RepeatListener(INITIAL_INTERVAL, NORMAL_INTERVAL, new View.OnClickListener() {
             public void onClick(View v){
-                MainActivity.webSocket.sendCommand(command);
+                MainActivity.webSocket.sendCommand(command, null);
             }
         }));
     }

@@ -27,4 +27,8 @@
     <string name="netflix_fast_forward">Fast forward</string>
     <string name="netflix_rewind">Rewind</string>
 
+    <!-- Vlc buttons -->
+    <string name="vlc_browser_files">Browse Files</string>
+    <string name="vlc_pause_player">Play/Pause</string>
+
 </resources>

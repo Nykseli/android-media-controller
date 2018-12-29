@@ -43,4 +43,11 @@ public class SocketCommands {
         return "[{\"command\": \"setMousePosition\", \"x\": 324, \"y\": 1020 }," + this.mouseLeftClick() + "]";
     }
 
+    public String getFilesFromFolder(String absolutePath){
+        return "{\"command\": \"getFilesAndFolders\", \"absolutePath\": \""+absolutePath+"\" }";
+    }
+
+    public String playFile(String absolutePath){
+        return "{\"command\": \"playFile\", \"absolutePath\": \""+absolutePath+"\" }";
+    }
 }

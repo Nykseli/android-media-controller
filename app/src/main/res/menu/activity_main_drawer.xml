@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_netflix" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_vlc"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Vlc" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

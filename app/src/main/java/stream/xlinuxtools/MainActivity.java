@@ -10,21 +10,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URI;
 
 import stream.xlinuxtools.fragment.DefaultFragment;
+import stream.xlinuxtools.fragment.FileFragment;
 import stream.xlinuxtools.fragment.NetflixFragment;
 import stream.xlinuxtools.fragment.SettingsFragment;
+import stream.xlinuxtools.fragment.VlcFragment;
 import stream.xlinuxtools.util.PreferenceStorage;
+import stream.xlinuxtools.websocket.Commands;
 import stream.xlinuxtools.websocket.WebSocket;
+import stream.xlinuxtools.websocket.WebSocketDataGetter;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, WebSocketDataGetter {
 
     public static WebSocket webSocket;
     public static PreferenceStorage preferenceStorage;
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){
             try {
                 // desktop
-                webSocket = new WebSocket(new URI(preferenceStorage.getString("WEB_SOCKET_URL") ));
+                webSocket = new WebSocket(new URI(preferenceStorage.getString("WEB_SOCKET_URL")), this);
                 // nuc
                 // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
                 webSocket.connect();
@@ -145,7 +153,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_netflix:
                 title = this.getString(R.string.menu_netflix);
                 break;
-
+            case R.id.nav_vlc:
+                title = "Vlc";
             default:
                 break;
         }
@@ -168,11 +177,17 @@ public class MainActivity extends AppCompatActivity
                 fragment = new NetflixFragment();
                 navigationView.getMenu().getItem(1).setChecked(true);
                 break;
-//            case R.id.nav_three:
-//                fragment = new Three();
-//                navigationView.getMenu().getItem(2).setChecked(true);
-//                break;
+                //TODO: add volumecontrol fragmet
+            case R.id.nav_vlc:
+                int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) getResources().getDimension(R.dimen.activity_vertical_margin) + 20, getResources().getDisplayMetrics());
+                ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.container);
+                layout.setPadding(0, topMargin, 0, 0);
 
+                //getVlcFragment();
+                fragment = new VlcFragment();
+                navigationView.getMenu().getItem(2).setCheckable(true);
+                //return;
+                //break;
 
         }
         if( fragment!=null ){
@@ -188,4 +203,30 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void getVlcFragment(){
+        webSocket.sendCommand(Commands.GET_FILES_AND_FOLDERS, "/media/nykseli/3TB/Anime");
+    }
+
+    public void showVlcFragment(JSONObject json){
+        Fragment fragment = new FileFragment(this, json);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //this is where the id of the FrameLayout is being mentioned. Hence the fragment would be loaded into the framelayout
+        ft.replace(R.id.container, fragment);
+        ft.commit();
+    }
+
+    @Override
+    public void parseJson(String data) {
+        //TODO: use better json library org.json is not a good library; bad code and bad performance
+        try {
+            JSONObject json = new JSONObject(data);
+            if(!json.isNull("files") && !json.isNull("folders")){
+                showVlcFragment(json);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
