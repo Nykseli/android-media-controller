@@ -19,6 +19,8 @@ public class DefaultButtonHandler extends AbstractButton {
         this.setMouseRight();
         this.setMouseLeft();
         this.setLeftClick();
+        this.setIncreaseMasterVolume();
+        this.setDecreaseMasterVolume();
     }
 
     private void setLeftClick(){
@@ -39,6 +41,13 @@ public class DefaultButtonHandler extends AbstractButton {
 
     private void setMouseUp(){
         this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_up), Commands.MOUSE_UP);
+    }
 
+    private void setIncreaseMasterVolume(){
+        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_up), Commands.INCREASE_MASTER_VOLUME);
+    }
+
+    private void setDecreaseMasterVolume(){
+        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_down), Commands.DECREASE_MASTER_VOLUME);
     }
 }

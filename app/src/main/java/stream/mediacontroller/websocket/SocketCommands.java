@@ -54,4 +54,12 @@ public class SocketCommands {
     public String getFullConfig(){
         return "{\"command\": \"getConfig\", \"configType\": \"all\" }";
     }
+
+    public String increaseMasterVolume(){
+        return "{\"command\": \"increaseMasterVolume\"}";
+    }
+
+    public String decreaseMasterVolume(){
+        return "{\"command\": \"decreaseMasterVolume\"}";
+    }
 }

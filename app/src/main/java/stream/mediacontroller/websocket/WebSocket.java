@@ -95,6 +95,12 @@ public class WebSocket extends WebSocketClient{
             case GET_FULL_CONFIG:
                 commandString = sc.getFullConfig();
                 break;
+            case INCREASE_MASTER_VOLUME:
+                commandString = sc.increaseMasterVolume();
+                break;
+            case DECREASE_MASTER_VOLUME:
+                commandString = sc.decreaseMasterVolume();
+                break;
             default:
                 break;
         }

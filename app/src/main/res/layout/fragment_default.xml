@@ -63,4 +63,24 @@
         android:text="@string/button_left_click"
         app:layout_constraintBottom_toTopOf="@+id/mouse-up"
         app:layout_constraintStart_toEndOf="@+id/mouse-up" />
+
+    <Button
+        android:id="@+id/master-volume-up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="19dp"
+        android:text="@string/volume_up"
+        app:layout_constraintBottom_toTopOf="@+id/master-volume-down"
+        app:layout_constraintEnd_toEndOf="@+id/master-volume-down" />
+
+    <Button
+        android:id="@+id/master-volume-down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginBottom="38dp"
+        android:text="@string/volume_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
