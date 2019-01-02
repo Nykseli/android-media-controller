@@ -25,6 +25,7 @@ import stream.xlinuxtools.fragment.FileFragment;
 import stream.xlinuxtools.fragment.NetflixFragment;
 import stream.xlinuxtools.fragment.SettingsFragment;
 import stream.xlinuxtools.fragment.VlcFragment;
+import stream.xlinuxtools.message.InfoPopUp;
 import stream.xlinuxtools.util.ConfigManager;
 import stream.xlinuxtools.util.PreferenceStorage;
 import stream.xlinuxtools.websocket.Commands;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     public static WebSocket webSocket;
     public static PreferenceStorage preferenceStorage;
     public static ConfigManager configManager;
+    public static InfoPopUp infoPopUp;
     private NavigationView navigationView;
 
 
@@ -48,18 +50,10 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        try {
-//            // desktop
-//            webSocket = new WebSocket(new URI("ws://192.168.0.19:9000"));
-//            // nuc
-//            // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
-//            webSocket.connect();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
         // Init public static classes here
         configManager = new ConfigManager();
+        infoPopUp = new InfoPopUp((ConstraintLayout) findViewById(R.id.container));
         preferenceStorage = new PreferenceStorage(this);
 
         if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){

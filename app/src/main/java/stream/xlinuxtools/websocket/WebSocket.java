@@ -7,6 +7,8 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 
+import stream.xlinuxtools.MainActivity;
+
 import static android.content.ContentValues.TAG;
 
 public class WebSocket extends WebSocketClient{
@@ -29,8 +31,8 @@ public class WebSocket extends WebSocketClient{
     @Override
     public void onOpen(ServerHandshake handshakedata) {
         Log.d(TAG, "onOpen: " + handshakedata.toString());
-        //TODO: when connection is opened. ask configuration from server
         sendCommand(Commands.GET_FULL_CONFIG, null);
+        MainActivity.infoPopUp.showShortMessage("Web Socket connected");
     }
 
     @Override
@@ -42,6 +44,7 @@ public class WebSocket extends WebSocketClient{
     @Override
     public void onClose(int code, String reason, boolean remote) {
         Log.d(TAG, "onClose: " + reason);
+        MainActivity.infoPopUp.showShortMessage("Web Socket connection closed");
     }
 
     @Override
@@ -101,6 +104,7 @@ public class WebSocket extends WebSocketClient{
         }catch (Exception err){
             //TODO: alert user that socket.send doesn't work
             err.printStackTrace();
+            MainActivity.infoPopUp.showShortMessage("Web Socket is not connected!");
         }
     }
 }
