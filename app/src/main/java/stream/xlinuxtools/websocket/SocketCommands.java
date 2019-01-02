@@ -50,4 +50,8 @@ public class SocketCommands {
     public String playFile(String absolutePath){
         return "{\"command\": \"playFile\", \"absolutePath\": \""+absolutePath+"\" }";
     }
+
+    public String getFullConfig(){
+        return "{\"command\": \"getConfig\", \"configType\": \"all\" }";
+    }
 }

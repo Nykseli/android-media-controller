@@ -25,6 +25,7 @@ import stream.xlinuxtools.fragment.FileFragment;
 import stream.xlinuxtools.fragment.NetflixFragment;
 import stream.xlinuxtools.fragment.SettingsFragment;
 import stream.xlinuxtools.fragment.VlcFragment;
+import stream.xlinuxtools.util.ConfigManager;
 import stream.xlinuxtools.util.PreferenceStorage;
 import stream.xlinuxtools.websocket.Commands;
 import stream.xlinuxtools.websocket.WebSocket;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
 
     public static WebSocket webSocket;
     public static PreferenceStorage preferenceStorage;
+    public static ConfigManager configManager;
     private NavigationView navigationView;
 
 
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity
 //            e.printStackTrace();
 //        }
 
+        // Init public static classes here
+        configManager = new ConfigManager();
         preferenceStorage = new PreferenceStorage(this);
 
         if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){
@@ -83,6 +87,12 @@ public class MainActivity extends AppCompatActivity
         displaySelectedFragment(R.id.nav_default);
 
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        webSocket.reconnect();
     }
 
     @Override
@@ -203,10 +213,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void getVlcFragment(){
-        webSocket.sendCommand(Commands.GET_FILES_AND_FOLDERS, "/media/nykseli/3TB/Anime");
-    }
-
     public void showVlcFragment(JSONObject json){
         Fragment fragment = new FileFragment(this, json);
 
@@ -216,17 +222,23 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
+    // This is from WebSocketDataGetter interface
     @Override
     public void parseJson(String data) {
         //TODO: use better json library org.json is not a good library; bad code and bad performance
+        Log.d("parseJson", "parseJson: " + data);
         try {
             JSONObject json = new JSONObject(data);
             if(!json.isNull("files") && !json.isNull("folders")){
                 showVlcFragment(json);
+            }else if(!json.isNull("config")){
+                configManager.loadConfig(json);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+
 }

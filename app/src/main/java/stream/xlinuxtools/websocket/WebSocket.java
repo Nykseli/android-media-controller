@@ -29,6 +29,8 @@ public class WebSocket extends WebSocketClient{
     @Override
     public void onOpen(ServerHandshake handshakedata) {
         Log.d(TAG, "onOpen: " + handshakedata.toString());
+        //TODO: when connection is opened. ask configuration from server
+        sendCommand(Commands.GET_FULL_CONFIG, null);
     }
 
     @Override
@@ -86,6 +88,9 @@ public class WebSocket extends WebSocketClient{
             case PLAY_FILE:
                 // Additional info is the absolute path of the file we want to play
                 commandString = sc.playFile(additionalInfo);
+                break;
+            case GET_FULL_CONFIG:
+                commandString = sc.getFullConfig();
                 break;
             default:
                 break;
