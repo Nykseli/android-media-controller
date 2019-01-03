@@ -2,6 +2,7 @@ package stream.mediacontroller;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import stream.mediacontroller.fragment.NetflixFragment;
 import stream.mediacontroller.fragment.SettingsFragment;
 import stream.mediacontroller.fragment.VlcFragment;
 import stream.mediacontroller.message.InfoPopUp;
+import stream.mediacontroller.message.InfoPopUpInterface;
 import stream.mediacontroller.util.ConfigManager;
 import stream.mediacontroller.util.PreferenceStorage;
 import stream.mediacontroller.websocket.WebSocket;
@@ -33,7 +35,8 @@ import stream.mediacontroller.websocket.WebSocketDataGetter;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, WebSocketDataGetter {
+        implements NavigationView.OnNavigationItemSelectedListener, WebSocketDataGetter,
+        InfoPopUpInterface {
 
     public static WebSocket webSocket;
     public static PreferenceStorage preferenceStorage;
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
         // Init public static classes here
         configManager = new ConfigManager();
-        infoPopUp = new InfoPopUp((ConstraintLayout) findViewById(R.id.container));
+        infoPopUp = new InfoPopUp(this);
         preferenceStorage = new PreferenceStorage(this);
 
         if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){
@@ -233,5 +236,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    // This is from InfoPopUpInterface. We want InfoPopUp to be static class so it cannot
+    // have any context variables.
+    // This is the workaround for now
+    @Override
+    public void showMessage(String message, int snackBarLength) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.container), message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
+    }
 }
