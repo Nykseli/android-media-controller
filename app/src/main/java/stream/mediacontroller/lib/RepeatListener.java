@@ -1,4 +1,4 @@
-package stream.mediacontroller.websocket;
+package stream.mediacontroller.lib;
 
 import android.os.Handler;
 import android.view.MotionEvent;

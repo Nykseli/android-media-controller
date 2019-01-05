@@ -8,14 +8,16 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
 
 import stream.mediacontroller.MainActivity;
+import stream.mediacontroller.command.AudioCommand;
+import stream.mediacontroller.command.ConfigCommand;
+import stream.mediacontroller.command.GeneralCommand;
+import stream.mediacontroller.command.MouseCommand;
+import stream.mediacontroller.command.VlcCommands;
 
 import static android.content.ContentValues.TAG;
 
 public class WebSocket extends WebSocketClient{
 
-    private static WebSocket webSocket;
-
-    private static SocketCommands sc = new SocketCommands();
     private static WebSocketDataGetter dataGetter = null;
 
 
@@ -31,7 +33,7 @@ public class WebSocket extends WebSocketClient{
     @Override
     public void onOpen(ServerHandshake handshakedata) {
         Log.d(TAG, "onOpen: " + handshakedata.toString());
-        sendCommand(Commands.GET_FULL_CONFIG, null);
+        sendCommand(Commands.CONFIG_GET_CONFIG, null);
         MainActivity.infoPopUp.showShortMessage("Web Socket connected");
     }
 
@@ -57,49 +59,58 @@ public class WebSocket extends WebSocketClient{
         String commandString = null;
 
         switch (command){
-            case LEFT_CLICK:
-                commandString = sc.mouseLeftClick();
+            // Audio
+            case AUDIO_INCREASE_MASTER_VOLUME:
+                commandString = AudioCommand.increaseMasterVolume();
                 break;
-            case MOUSE_UP:
-                commandString = sc.mouseUp();
+            case AUDIO_DECREASE_MASTER_VOLUME:
+                commandString = AudioCommand.decreaseMasterVolume();
                 break;
-            case MOUSE_DOWN:
-                commandString = sc.mouseDown();
+
+            // Config
+            case CONFIG_GET_CONFIG:
+                commandString = ConfigCommand.getConfig();
                 break;
-            case MOUSE_LEFT:
-                commandString = sc.mouseLeft();
-                break;
-            case MOUSE_RIGHT:
-                commandString = sc.mouseRight();
-                break;
-            case SKIP_NETFLIX_INTRO:
-                commandString = sc.skipNetflixIntro();
-                break;
-            case NEXT_NETFLIX_EPISODE:
-                commandString = sc.nextNetflixEpisode();
-                break;
-            case REWIND_NETFLIX_BACKWARD:
-                commandString = sc.rewindNetflixBackward();
-                break;
-            case FAST_NETFLIX_FORWARD:
-                commandString = sc.fastNetflixForward();
-                break;
-            case GET_FILES_AND_FOLDERS:
+
+            // General
+            case GENERAL_GET_FILES_AND_FOLDERS:
                 // Additional info is the absolute path of the folder that we want to browse
-                commandString = sc.getFilesFromFolder(additionalInfo);
+                commandString = GeneralCommand.getFilesAndFolders(additionalInfo);
                 break;
-            case PLAY_FILE:
+
+            // Mouse
+            case MOUSE_LEFT_CLICK:
+                commandString = MouseCommand.leftMouseClick();
+                break;
+            case MOUSE_MOUSE_UP:
+                commandString = MouseCommand.mouseUp();
+                break;
+            case MOUSE_MOUSE_DOWN:
+                commandString = MouseCommand.mouseDown();
+                break;
+            case MOUSE_MOUSE_LEFT:
+                commandString = MouseCommand.mouseLeft();
+                break;
+            case MOUSE_MOUSE_RIGHT:
+                commandString = MouseCommand.mouseRight();
+                break;
+            case MOUSE_SKIP_NETFLIX_INTRO:
+                commandString = MouseCommand.skipNetflixIntro();
+                break;
+            case MOUSE_NEXT_NETFLIX_EPISODE:
+                commandString = MouseCommand.nextNetflixEpisode();
+                break;
+            case MOUSE_REWIND_NETFLIX_BACKWARD:
+                commandString = MouseCommand.rewindNetflixBackward();
+                break;
+            case MOUSE_FAST_NETFLIX_FORWARD:
+                commandString = MouseCommand.fastNetflixForward();
+                break;
+
+            // Vlc
+            case VLC_PLAY_FILE:
                 // Additional info is the absolute path of the file we want to play
-                commandString = sc.playFile(additionalInfo);
-                break;
-            case GET_FULL_CONFIG:
-                commandString = sc.getFullConfig();
-                break;
-            case INCREASE_MASTER_VOLUME:
-                commandString = sc.increaseMasterVolume();
-                break;
-            case DECREASE_MASTER_VOLUME:
-                commandString = sc.decreaseMasterVolume();
+                commandString = VlcCommands.playFile(additionalInfo);
                 break;
             default:
                 break;

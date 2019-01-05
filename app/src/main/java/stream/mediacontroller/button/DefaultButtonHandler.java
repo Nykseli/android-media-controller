@@ -24,30 +24,30 @@ public class DefaultButtonHandler extends AbstractButton {
     }
 
     private void setLeftClick(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.left_click), Commands.LEFT_CLICK);
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.left_click), Commands.MOUSE_LEFT_CLICK);
     }
 
     private void setMouseRight(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_right), Commands.MOUSE_RIGHT);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_right), Commands.MOUSE_MOUSE_RIGHT);
     }
 
     private void setMouseLeft(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_left), Commands.MOUSE_LEFT);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_left), Commands.MOUSE_MOUSE_LEFT);
     }
 
     private void setMouseDown(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_down), Commands.MOUSE_DOWN);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_down), Commands.MOUSE_MOUSE_DOWN);
     }
 
     private void setMouseUp(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_up), Commands.MOUSE_UP);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.mouse_up), Commands.MOUSE_MOUSE_UP);
     }
 
     private void setIncreaseMasterVolume(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_up), Commands.INCREASE_MASTER_VOLUME);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_up), Commands.AUDIO_INCREASE_MASTER_VOLUME);
     }
 
     private void setDecreaseMasterVolume(){
-        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_down), Commands.DECREASE_MASTER_VOLUME);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_down), Commands.AUDIO_DECREASE_MASTER_VOLUME);
     }
 }

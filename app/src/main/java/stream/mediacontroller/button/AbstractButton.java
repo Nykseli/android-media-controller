@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import stream.mediacontroller.MainActivity;
 import stream.mediacontroller.websocket.Commands;
-import stream.mediacontroller.websocket.RepeatListener;
+import stream.mediacontroller.lib.RepeatListener;
 
 public abstract class AbstractButton {
     View view;

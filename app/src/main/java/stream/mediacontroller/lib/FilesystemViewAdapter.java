@@ -47,10 +47,10 @@ public class FilesystemViewAdapter extends RecyclerView.Adapter<FilesystemViewAd
                 Log.d(TAG, "onClick itemCount: " + getItemCount());
                 FilesystemClass clickedFile = fileList.get(holder.getAdapterPosition());
                 if(clickedFile.isDirectory()){
-                    MainActivity.webSocket.sendCommand(Commands.GET_FILES_AND_FOLDERS, clickedFile.getFullPath());
+                    MainActivity.webSocket.sendCommand(Commands.GENERAL_GET_FILES_AND_FOLDERS, clickedFile.getFullPath());
                 }else{
                     //TODO: send command to play the file
-                    MainActivity.webSocket.sendCommand(Commands.PLAY_FILE, clickedFile.getFullPath());
+                    MainActivity.webSocket.sendCommand(Commands.VLC_PLAY_FILE, clickedFile.getFullPath());
                 }
             }
         });

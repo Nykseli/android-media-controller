@@ -21,18 +21,18 @@ public class NetflixButtonHandler extends AbstractButton {
     }
 
     private void setSkipNetflixIntro(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_intro), Commands.SKIP_NETFLIX_INTRO);
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_intro), Commands.MOUSE_SKIP_NETFLIX_INTRO);
     }
 
     private void setNextNetflixEpisode(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_episode), Commands.NEXT_NETFLIX_EPISODE);
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_episode), Commands.MOUSE_NEXT_NETFLIX_EPISODE);
     }
 
     private void setRewindNetflixBackward(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.REWIND_NETFLIX_BACKWARD);
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.MOUSE_REWIND_NETFLIX_BACKWARD);
     }
 
     private void setFastNetflixForward(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.FAST_NETFLIX_FORWARD);
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.MOUSE_FAST_NETFLIX_FORWARD);
     }
 }
