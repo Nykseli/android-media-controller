@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import stream.mediacontroller.MainActivity;
@@ -46,11 +49,16 @@ public class FilesystemViewAdapter extends RecyclerView.Adapter<FilesystemViewAd
                 Log.d(TAG, "onClick: " + holder.getAdapterPosition() );
                 Log.d(TAG, "onClick itemCount: " + getItemCount());
                 FilesystemClass clickedFile = fileList.get(holder.getAdapterPosition());
+                JSONObject additionalInfo = new JSONObject();
+                try {
+                    additionalInfo.put("absolutePath", clickedFile.getFullPath());
+                } catch (JSONException e){/* Ignore */ }
+
                 if(clickedFile.isDirectory()){
-                    MainActivity.webSocket.sendCommand(Commands.GENERAL_GET_FILES_AND_FOLDERS, clickedFile.getFullPath());
+                    MainActivity.webSocket.sendCommand(Commands.GENERAL_GET_FILES_AND_FOLDERS, additionalInfo);
                 }else{
                     //TODO: send command to play the file
-                    MainActivity.webSocket.sendCommand(Commands.VLC_PLAY_FILE, clickedFile.getFullPath());
+                    MainActivity.webSocket.sendCommand(Commands.VLC_PLAY_FILE, additionalInfo);
                 }
             }
         });

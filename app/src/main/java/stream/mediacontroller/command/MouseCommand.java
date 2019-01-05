@@ -10,107 +10,104 @@ public class MouseCommand extends AbstractCommand {
     private static final int NEGATIVE_PIXEL_AMOUNT = PIXEL_AMOUNT * -1;
 
     /* Socket command implementations start */
-    public static String moveMouseX(int amount){
+
+    /**
+     * @param additionalInfo {"amount": int}
+     * @return String (command moves mouse on y axis by x amount that is defined by amount. amount can be negative. )
+     */
+    public static String moveMouseX(JSONObject additionalInfo){
         String commandString = "moveMouseX";
 
-        JSONObject optionalInfo = new JSONObject();
-        try {
-            optionalInfo.put("amount", amount);
-        } catch (JSONException e) {/* Ignore */}
-
-        return getCommandString(MOUSE_INTERFACE, commandString, optionalInfo);
+        return getCommandString(MOUSE_INTERFACE, commandString, additionalInfo);
     }
 
-    public static String moveMouseY(int amount){
+    /**
+     * @param additionalInfo {"amount": int}
+     * @return String (command moves mouse on y axis by x amount that is defined by amount. amount can be negative. )
+     */
+    public static String moveMouseY(JSONObject additionalInfo){
         String commandString = "moveMouseY";
 
-        JSONObject optionalInfo = new JSONObject();
-        try {
-            optionalInfo.put("amount", amount);
-        } catch (JSONException e) {/* Ignore */}
-
-        return getCommandString(MOUSE_INTERFACE, commandString, optionalInfo);
+        return getCommandString(MOUSE_INTERFACE, commandString, additionalInfo);
     }
 
+    /**
+     * @return String (command that clicks with left mouse button )
+     */
     public static String leftMouseClick(){
         String commandString = "leftMouseClick";
 
         return getCommandString(MOUSE_INTERFACE, commandString);
     }
 
-    public static String setMousePosition(int x, int y){
+    /**
+     * @param additionalInfo {"x": int, "y": int}
+     * @return String (command that sets mouse position to x,y coordinate )
+     */
+    public static String setMousePosition(JSONObject additionalInfo){
         String commandString = "setMousePosition";
 
-        JSONObject optionalInfo = new JSONObject();
-        try {
-            optionalInfo.put("x", x);
-            optionalInfo.put("y", y);
-        } catch (JSONException e) {/* Ignore */}
-
-
-        return getCommandString(MOUSE_INTERFACE, commandString, optionalInfo);
+        return getCommandString(MOUSE_INTERFACE, commandString, additionalInfo);
     }
 
     /* Socket command implementations end */
 
     /* Methods for client */
+
+    private static JSONObject mouseMoveObject(int amount){
+        JSONObject additionalInfo = new JSONObject();
+        try {
+            additionalInfo.put("amount", amount);
+        } catch (JSONException e) {/* Ignore */}
+        return  additionalInfo;
+    }
+
     public  static String mouseUp(){
-        return moveMouseY(NEGATIVE_PIXEL_AMOUNT);
+        return moveMouseY(mouseMoveObject(NEGATIVE_PIXEL_AMOUNT));
     }
 
     public static String mouseDown(){
-        return moveMouseY(PIXEL_AMOUNT);
+        return moveMouseY(mouseMoveObject(PIXEL_AMOUNT));
     }
 
     public static String mouseLeft(){
-        return moveMouseX(NEGATIVE_PIXEL_AMOUNT);
+        return moveMouseX(mouseMoveObject(NEGATIVE_PIXEL_AMOUNT));
     }
 
     public static String mouseRight(){
-        return moveMouseX(PIXEL_AMOUNT);
+        return moveMouseX(mouseMoveObject(PIXEL_AMOUNT));
+    }
+
+    private static JSONObject[] getPositionClick(int x, int y){
+        JSONObject positionCommand = null;
+        JSONObject clickCommand = null;
+        JSONObject additionalInfo = new JSONObject();
+        try {
+            additionalInfo.put("x",x);
+            additionalInfo.put("y",y);
+            positionCommand = new JSONObject(setMousePosition(additionalInfo));
+            clickCommand = new JSONObject(leftMouseClick());
+        } catch (JSONException e) {/* Ignore */}
+
+        return new JSONObject[]{positionCommand, clickCommand};
     }
 
     public static String skipNetflixIntro(){
-        JSONObject positionCommand = null;
-        JSONObject clickCommand = null;
-        try {
-            positionCommand = new JSONObject(setMousePosition(1748, 884));
-            clickCommand = new JSONObject(leftMouseClick());
-        } catch (JSONException e) {/* Ignore */}
-
-        return getCommandArrayString(positionCommand, clickCommand);
+        return getCommandArrayString(getPositionClick(1748, 884));
     }
 
     public static String nextNetflixEpisode(){
-        JSONObject positionCommand = null;
-        JSONObject clickCommand = null;
-        try {
-            positionCommand = new JSONObject(setMousePosition(1487, 1013));
-            clickCommand = new JSONObject(leftMouseClick());
-        } catch (JSONException e) {/* Ignore */}
+        return getCommandArrayString(getPositionClick(1487, 1013));
 
-        return getCommandArrayString(positionCommand, clickCommand);
     }
 
     public static String rewindNetflixBackward(){
-        JSONObject positionCommand = null;
-        JSONObject clickCommand = null;
-        try {
-            positionCommand = new JSONObject(setMousePosition(205, 1011));
-            clickCommand = new JSONObject(leftMouseClick());
-        } catch (JSONException e) {/* Ignore */}
+        return getCommandArrayString(getPositionClick(205, 1011));
 
-        return getCommandArrayString(positionCommand, clickCommand);
     }
 
     public static String fastNetflixForward(){
-        JSONObject positionCommand = null;
-        JSONObject clickCommand = null;
-        try {
-            positionCommand = new JSONObject(setMousePosition(324, 1020));
-            clickCommand = new JSONObject(leftMouseClick());
-        } catch (JSONException e) {/* Ignore */}
+        return getCommandArrayString(getPositionClick(324, 1020));
 
-        return getCommandArrayString(positionCommand, clickCommand);
     }
 }

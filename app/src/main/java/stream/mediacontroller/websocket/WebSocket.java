@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.json.JSONObject;
 
 import java.net.URI;
 
@@ -54,7 +55,7 @@ public class WebSocket extends WebSocketClient{
         ex.printStackTrace();
     }
 
-    public void sendCommand(Commands command, String additionalInfo){
+    public void sendCommand(Commands command, JSONObject additionalInfo){
 
         String commandString = null;
 

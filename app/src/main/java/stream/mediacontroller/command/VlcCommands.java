@@ -1,25 +1,26 @@
 package stream.mediacontroller.command;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class VlcCommands extends AbstractCommand {
 
+    /**
+     * @return String (command that toggles vlc media pause on/off)
+     */
     public static String pauseFile(){
         String commandString = "pauseFile";
 
         return getCommandString(VLC_INTERFACE, commandString);
     }
 
-    public static String playFile(String absolutePath){
+    /**
+     * @param additionalInfo {"absolutePath": String }
+     * @return String (command that plays file in absolutePath with vlc)
+     */
+    public static String playFile(JSONObject additionalInfo){
         String commandString = "playFile";
 
-        JSONObject optionalInfo = new JSONObject();
-        try {
-            optionalInfo.put("absolutePath", absolutePath);
-        } catch (JSONException e) {/* Ignore */}
-
-        return getCommandString(VLC_INTERFACE, commandString, optionalInfo);
+        return getCommandString(VLC_INTERFACE, commandString, additionalInfo);
     }
 
 }

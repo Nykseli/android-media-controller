@@ -1,18 +1,16 @@
 package stream.mediacontroller.command;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GeneralCommand extends AbstractCommand {
 
-    public static String getFilesAndFolders(String absolutePath) {
+    /**
+     * @param additionalInfo {"absolutePath": String }
+     * @return String (command that plays file in absolutePath with vlc)
+     */
+    public static String getFilesAndFolders(JSONObject additionalInfo) {
         String commandString = "getFilesAndFolders";
 
-        JSONObject optionalInfo = new JSONObject();
-        try {
-            optionalInfo.put("absolutePath", absolutePath);
-        } catch (JSONException e) {/* Ignore */}
-
-        return getCommandString(GENERAL_INTERFACE, commandString, optionalInfo);
+        return getCommandString(GENERAL_INTERFACE, commandString, additionalInfo);
     }
 }

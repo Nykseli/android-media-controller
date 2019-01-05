@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONObject;
+
 import stream.mediacontroller.MainActivity;
 import stream.mediacontroller.websocket.Commands;
 import stream.mediacontroller.lib.RepeatListener;
@@ -27,7 +29,7 @@ public abstract class AbstractButton {
         });
     }
 
-    public void setSingleClickButton(Button button, final Commands command, final String additionalInfo){
+    public void setSingleClickButton(Button button, final Commands command, final JSONObject additionalInfo){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
