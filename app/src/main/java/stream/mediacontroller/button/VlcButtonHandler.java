@@ -20,6 +20,7 @@ public class VlcButtonHandler extends AbstractButton{
     @Override
     public void initButtons() {
         this.setBrowserFiles();
+        this.setPauseButton();
     }
 
     public void setBrowserFiles(){
@@ -34,6 +35,10 @@ public class VlcButtonHandler extends AbstractButton{
         }else{
             //TODO: error message that tells user to fix config on server side
         }
+    }
+
+    private void setPauseButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_pause), Commands.VLC_PAUSE_FILE);
     }
 
 

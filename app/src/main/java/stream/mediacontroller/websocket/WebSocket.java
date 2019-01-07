@@ -113,6 +113,10 @@ public class WebSocket extends WebSocketClient{
                 // Additional info is the absolute path of the file we want to play
                 commandString = VlcCommands.playFile(additionalInfo);
                 break;
+            case VLC_PAUSE_FILE:
+                // Additional info is the absolute path of the file we want to play
+                commandString = VlcCommands.pauseFile();
+                break;
             default:
                 break;
         }
