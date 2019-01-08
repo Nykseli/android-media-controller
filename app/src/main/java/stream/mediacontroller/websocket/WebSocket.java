@@ -7,6 +7,7 @@ import org.java_websocket.handshake.ServerHandshake;
 import org.json.JSONObject;
 
 import java.net.URI;
+import java.nio.ByteBuffer;
 
 import stream.mediacontroller.MainActivity;
 import stream.mediacontroller.command.AudioCommand;
@@ -14,6 +15,7 @@ import stream.mediacontroller.command.ConfigCommand;
 import stream.mediacontroller.command.GeneralCommand;
 import stream.mediacontroller.command.MouseCommand;
 import stream.mediacontroller.command.VlcCommands;
+import stream.mediacontroller.crypto.Crypto;
 
 import static android.content.ContentValues.TAG;
 
@@ -21,6 +23,8 @@ public class WebSocket extends WebSocketClient{
 
     private static WebSocketDataGetter dataGetter = null;
 
+    //TODO: get this from settings
+    private static boolean AES_ENCRYPTION = true;
 
     public WebSocket(URI serverUri, WebSocketDataGetter dGetter){
         super(serverUri);
@@ -40,8 +44,14 @@ public class WebSocket extends WebSocketClient{
 
     @Override
     public void onMessage(String message) {
-        Log.d(TAG, "onMessage: " + message);
         dataGetter.parseJson(message);
+    }
+
+    public void onMessage(ByteBuffer blob){
+        byte[] encodedArray = blob.array();
+        Log.d(TAG, "onMessage: we have o blob length: " + encodedArray.length);
+        String decodedMessage = Crypto.decryptCFB(encodedArray);
+        dataGetter.parseJson(decodedMessage);
     }
 
     @Override
@@ -114,7 +124,6 @@ public class WebSocket extends WebSocketClient{
                 commandString = VlcCommands.playFile(additionalInfo);
                 break;
             case VLC_PAUSE_FILE:
-                // Additional info is the absolute path of the file we want to play
                 commandString = VlcCommands.pauseFile();
                 break;
             default:
@@ -122,7 +131,12 @@ public class WebSocket extends WebSocketClient{
         }
 
         try {
-            this.send(commandString);
+            if(AES_ENCRYPTION){
+                byte[] message = Crypto.cryptCFB(commandString);
+                this.send(message);
+            }else {
+                this.send(commandString);
+            }
         }catch (Exception err){
             //TODO: alert user that socket.send doesn't work
             err.printStackTrace();
