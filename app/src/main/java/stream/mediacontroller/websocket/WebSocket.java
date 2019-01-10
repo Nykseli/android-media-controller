@@ -33,6 +33,30 @@ public class WebSocket extends WebSocketClient{
         super(serverUri);
     }
 
+    /**
+     * Try to reconnect to socket on new thread to avoid blockage of bad connection.
+     */
+    public void asyncReConnect(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                reconnect();
+            }
+        }).run();
+    }
+
+    /**
+     * Try to reconnect to socket on new thread to avoid blockage of bad connection.
+     */
+    public void asyncConnect(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                connect();
+            }
+        }).run();
+    }
+
     @Override
     public void onOpen(ServerHandshake handshakedata) {
         Log.d(TAG, "onOpen: " + handshakedata.toString());
@@ -40,11 +64,20 @@ public class WebSocket extends WebSocketClient{
         MainActivity.infoPopUp.showShortMessage("Web Socket connected");
     }
 
+    /**
+     * Parse plain text messages from server
+     * @param message
+     */
     @Override
     public void onMessage(String message) {
         dataGetter.parseJson(message);
     }
 
+    /**
+     * Decrypt and parse encrypted message from server
+     * @param blob encrypted message
+     */
+    @Override
     public void onMessage(ByteBuffer blob){
         byte[] encodedArray = blob.array();
         Log.d(TAG, "onMessage: we have o blob length: " + encodedArray.length);

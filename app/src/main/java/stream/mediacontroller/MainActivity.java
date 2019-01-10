@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import stream.mediacontroller.fragment.DefaultFragment;
 import stream.mediacontroller.fragment.FileFragment;
@@ -59,14 +60,11 @@ public class MainActivity extends AppCompatActivity
         infoPopUp = new InfoPopUp(this);
         preferenceStorage = new PreferenceStorage(this);
 
-        // Connect to web socket if address is set in settings
-        if (!preferenceStorage.getString("WEB_SOCKET_URL", "").isEmpty()){
-            try {
-                webSocket = new WebSocket(new URI(preferenceStorage.getString(PreferenceStorage.WEB_SOCKET_URL, "")), this);
-                webSocket.connect();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            webSocket = new WebSocket(new URI(preferenceStorage.getString(PreferenceStorage.WEB_SOCKET_URL, "")), this);
+            webSocket.asyncConnect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -87,8 +85,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onResume(){
         super.onResume();
-        if(!webSocket.isClosed())
-            webSocket.reconnect();
+        if(webSocket.isClosed())
+            webSocket.asyncReConnect();
     }
 
     @Override
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity
 
             return true;
         }else if(id == R.id.action_connect_socket) {
-            webSocket.reconnect();
+            webSocket.asyncReConnect();
             return true;
         }
 

@@ -42,7 +42,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 try {
                     MainActivity.webSocket.close();
                     MainActivity.webSocket = new WebSocket(new URI(newValue.toString()));
-                    MainActivity.webSocket.connect();
+                    MainActivity.webSocket.asyncConnect();
                     Log.d(TAG, "onPreferenceChange: connect to socket" );
                     MainActivity.preferenceStorage.saveString(PreferenceStorage.WEB_SOCKET_URL, newValue.toString());
                 } catch (Exception e) {
