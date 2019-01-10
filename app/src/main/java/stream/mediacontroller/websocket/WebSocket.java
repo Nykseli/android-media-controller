@@ -16,15 +16,13 @@ import stream.mediacontroller.command.GeneralCommand;
 import stream.mediacontroller.command.MouseCommand;
 import stream.mediacontroller.command.VlcCommands;
 import stream.mediacontroller.crypto.Crypto;
+import stream.mediacontroller.util.PreferenceStorage;
 
 import static android.content.ContentValues.TAG;
 
 public class WebSocket extends WebSocketClient{
 
     private static WebSocketDataGetter dataGetter = null;
-
-    //TODO: get this from settings
-    private static boolean AES_ENCRYPTION = true;
 
     public WebSocket(URI serverUri, WebSocketDataGetter dGetter){
         super(serverUri);
@@ -131,7 +129,8 @@ public class WebSocket extends WebSocketClient{
         }
 
         try {
-            if(AES_ENCRYPTION){
+            // If encryption is enabled in settings, send message as encrypted
+            if(PreferenceStorage.SECURITY_IS_ENCRYPTION_ENABLED){
                 byte[] message = Crypto.cryptCFB(commandString);
                 this.send(message);
             }else {

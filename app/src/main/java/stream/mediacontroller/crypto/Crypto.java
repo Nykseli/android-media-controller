@@ -9,15 +9,16 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import stream.mediacontroller.util.PreferenceStorage;
+
 public class Crypto {
 
-    //TODO: get this from settings
-    static private byte[] key = {0x71, 0x77, 0x65, 0x72, 0x61, 0x73, 0x64, 0x66, 0x71, 0x77, 0x65, 0x72, 0x61, 0x73, 0x64, 0x66};
 
     public static String decryptCFB(byte[] crypted){
 
         byte[] decrypted = {};
 
+        byte[] key = PreferenceStorage.SECURITY_CURRENT_ENCRYPTION_KEY.getBytes();
         byte[] decodedBytes = Base64.decode(crypted, Base64.DEFAULT);
         byte[] ivBytes = Arrays.copyOf(decodedBytes, 16);
         byte[] messageBytes = Arrays.copyOfRange(decodedBytes, 16, decodedBytes.length);
@@ -47,6 +48,9 @@ public class Crypto {
 
     public static byte[] cryptCFB(String plainText){
         plainText = addPadding(plainText);
+
+        byte[] key = PreferenceStorage.SECURITY_CURRENT_ENCRYPTION_KEY.getBytes();
+
         byte[] crypted = {};
         SecureRandom secureRandom = new SecureRandom();
         byte[] iv = new byte[16];

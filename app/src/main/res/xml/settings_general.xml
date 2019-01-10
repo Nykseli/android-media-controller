@@ -6,17 +6,6 @@
         android:key="websocket_categroy"
         android:title="Websocket">
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:key="key1"
-            android:title="Switch Preference"
-            android:summary="Switch Summary"
-            android:defaultValue="true" />
-
-        <Preference
-            android:key="feedback"
-            android:title="Send feedback"
-            android:summary="Report technical issues or suggest new features"/>
-
         <EditTextPreference
             android:key="web_socket_uri"
             android:title="Web Socket Uri"
@@ -24,4 +13,21 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="security_category"
+        android:title="Security">
+
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:key="enable_encryption"
+            android:title="Enable Encryption"
+            android:summary="Encrypt messages between phone and target device"
+            android:defaultValue="false" />
+
+        <EditTextPreference
+            android:key="encryption_key"
+            android:title="Encryption password"
+            android:summary="16 character long key that matches the secret key on target device"
+            android:defaultValue=""/>
+
+    </PreferenceCategory>
 </android.support.v7.preference.PreferenceScreen>

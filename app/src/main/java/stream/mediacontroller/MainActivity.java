@@ -1,6 +1,7 @@
 package stream.mediacontroller;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
@@ -58,12 +59,10 @@ public class MainActivity extends AppCompatActivity
         infoPopUp = new InfoPopUp(this);
         preferenceStorage = new PreferenceStorage(this);
 
-        if (preferenceStorage.getString("WEB_SOCKET_URL") !=  null){
+        // Connect to web socket if address is set in settings
+        if (!preferenceStorage.getString("WEB_SOCKET_URL", "").isEmpty()){
             try {
-                // desktop
-                webSocket = new WebSocket(new URI(preferenceStorage.getString("WEB_SOCKET_URL")), this);
-                // nuc
-                // webSocket = new WebSocket(new URI("ws://192.168.0.13:9000"));
+                webSocket = new WebSocket(new URI(preferenceStorage.getString(PreferenceStorage.WEB_SOCKET_URL, "")), this);
                 webSocket.connect();
             } catch (Exception e) {
                 e.printStackTrace();
