@@ -24,6 +24,7 @@ public enum Commands {
 
     // Vlc
     VLC_PLAY_FILE,
+    VLC_PLAY_FILES,
     VLC_PAUSE_FILE,
 
 }

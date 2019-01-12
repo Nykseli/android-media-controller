@@ -27,11 +27,13 @@ import stream.mediacontroller.lib.FilesystemViewAdapter;
 public class FileFragment extends Fragment {
     private Context context;
     private JSONObject json;
+    private FilesystemViewAdapter adapter;
 
     @SuppressLint("ValidFragment")
-    public FileFragment(Context context, JSONObject json){
+    public FileFragment(Context context, JSONObject json, FilesystemViewAdapter adapter){
         this.context = context;
         this.json = json;
+        this.adapter = adapter;
 
     }
 
@@ -45,17 +47,16 @@ public class FileFragment extends Fragment {
 
     public void setVlc(View view){
 
-        ArrayList<FilesystemClass> list = new ArrayList<>();
+        this.adapter.initFileList();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         Log.d("", "showVlcFragment: " + recyclerView.toString());
 
-        FilesystemViewAdapter mAdapter = new FilesystemViewAdapter(list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(this.adapter);
 
         try {
             JSONArray fileArr = this.json.getJSONArray("files");
@@ -64,11 +65,11 @@ public class FileFragment extends Fragment {
 
             // We want to list folders first
             for(int i = 0; i < folderArr.length(); i++){
-                list.add(new FilesystemClass(true, folderArr.getString(i), path));
+                this.adapter.addToFileList(new FilesystemClass(true, folderArr.getString(i), path));
             }
 
             for(int i = 0; i < fileArr.length(); i++) {
-                list.add(new FilesystemClass(false, fileArr.getString(i), path));
+                this.adapter.addToFileList(new FilesystemClass(false, fileArr.getString(i), path));
             }
 
 
@@ -77,7 +78,7 @@ public class FileFragment extends Fragment {
         }
 
 
-        mAdapter.notifyDataSetChanged();
+        this.adapter.notifyDataSetChanged();
     }
 
 }

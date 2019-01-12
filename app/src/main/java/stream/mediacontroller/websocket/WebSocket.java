@@ -22,7 +22,7 @@ import static android.content.ContentValues.TAG;
 
 public class WebSocket extends WebSocketClient{
 
-    private static WebSocketDataGetter dataGetter = null;
+    public static WebSocketDataGetter dataGetter = null;
 
     public WebSocket(URI serverUri, WebSocketDataGetter dGetter){
         super(serverUri);
@@ -153,6 +153,10 @@ public class WebSocket extends WebSocketClient{
             case VLC_PLAY_FILE:
                 // Additional info is the absolute path of the file we want to play
                 commandString = VlcCommands.playFile(additionalInfo);
+                break;
+            case VLC_PLAY_FILES:
+                // Additional info contains list of files we want to play
+                commandString = VlcCommands.playFiles(additionalInfo);
                 break;
             case VLC_PAUSE_FILE:
                 commandString = VlcCommands.pauseFile();

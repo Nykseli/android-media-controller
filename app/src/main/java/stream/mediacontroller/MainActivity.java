@@ -1,6 +1,8 @@
 package stream.mediacontroller;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -20,9 +22,11 @@ import android.view.MenuItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import stream.mediacontroller.activity.FileActivity;
 import stream.mediacontroller.fragment.DefaultFragment;
 import stream.mediacontroller.fragment.FileFragment;
 import stream.mediacontroller.fragment.NetflixFragment;
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     public static InfoPopUp infoPopUp;
     private NavigationView navigationView;
 
+    private static String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,13 +212,20 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void showVlcFragment(JSONObject json){
-        Fragment fragment = new FileFragment(this, json);
+//    public void showVlcFragment(JSONObject json){
+//        Fragment fragment = new FileFragment(this, json);
+//
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        //this is where the id of the FrameLayout is being mentioned. Hence the fragment would be loaded into the framelayout
+//        ft.replace(R.id.container, fragment);
+//        ft.commit();
+//    }
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //this is where the id of the FrameLayout is being mentioned. Hence the fragment would be loaded into the framelayout
-        ft.replace(R.id.container, fragment);
-        ft.commit();
+    public void launchFileAction(JSONObject json){
+        Intent intent = new Intent(this, FileActivity.class);
+        intent.putExtra(FileActivity.INTENT_STRING, json.toString());
+        startActivity(intent);
+
     }
 
     // This is from WebSocketDataGetter interface
@@ -224,7 +236,10 @@ public class MainActivity extends AppCompatActivity
         try {
             JSONObject json = new JSONObject(data);
             if(!json.isNull("files") && !json.isNull("folders")){
-                showVlcFragment(json);
+               // if(!FileActivity.ON_TOP)
+                    launchFileAction(json);
+              //  else
+            //        showVlcFragment(json);
             }else if(!json.isNull("config")){
                 configManager.loadConfig(json);
             }
@@ -241,5 +256,12 @@ public class MainActivity extends AppCompatActivity
     public void showMessage(String message, int snackBarLength) {
         Snackbar snackbar = Snackbar.make(findViewById(R.id.container), message, Snackbar.LENGTH_SHORT);
         snackbar.show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart: ");
+        WebSocket.dataGetter = this;
     }
 }

@@ -23,4 +23,13 @@ public class VlcCommands extends AbstractCommand {
         return getCommandString(VLC_INTERFACE, commandString, additionalInfo);
     }
 
+    /**
+     * @param additionalInfo {"absolutePaths": String[]}
+     * @return String (command that plays all the files in String array with vlc)
+     */
+    public static  String playFiles(JSONObject additionalInfo){
+        String commandString = "playFiles";
+
+        return getCommandString(VLC_INTERFACE, commandString, additionalInfo);
+    }
 }
