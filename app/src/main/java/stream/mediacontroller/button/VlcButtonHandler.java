@@ -21,6 +21,13 @@ public class VlcButtonHandler extends AbstractButton{
     public void initButtons() {
         this.setBrowserFiles();
         this.setPauseButton();
+        this.setPlayNextButton();
+        this.setPlayPreviousButton();
+        this.setFastForwardButton();
+        this.setRewindButton();
+        this.setIncreaseVolumeButton();
+        this.setDecreaseVolumeButton();
+        this.setMuteButton();
     }
 
     public void setBrowserFiles(){
@@ -41,5 +48,31 @@ public class VlcButtonHandler extends AbstractButton{
         this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_pause), Commands.VLC_PAUSE_FILE);
     }
 
+    private void setPlayNextButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_play_next_media), Commands.VLC_PLAY_NEXT_MEDIA);
+    }
 
+    private void setPlayPreviousButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_play_previous_media), Commands.VLC_PLAY_PREVIOUS_MEDIA);
+    }
+
+    private void setFastForwardButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_fast_forward), Commands.VLC_FAST_FORWARD);
+    }
+
+    private void setRewindButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_rewind), Commands.VLC_REWIND);
+    }
+
+    private void setIncreaseVolumeButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_increase_volume), Commands.VLC_INCREASE_VOLUME);
+    }
+
+    private void setDecreaseVolumeButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_decrease_volume), Commands.VLC_DECREASE_VOLUME);
+    }
+
+    private void setMuteButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_mute_volume), Commands.VLC_MUTE_VOLUME);
+    }
 }

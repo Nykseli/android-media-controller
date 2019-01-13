@@ -96,6 +96,11 @@ public class WebSocket extends WebSocketClient{
         ex.printStackTrace();
     }
 
+    /**
+     * sendCommand creates message that is send to server based on Commands
+     * @param command Command that you want to use. Full list in websocket.Commands
+     * @param additionalInfo JSONObject that contains additional info to be send to server. Use null if command doesn't need any additional info
+     */
     public void sendCommand(Commands command, JSONObject additionalInfo){
 
         String commandString = null;
@@ -161,6 +166,28 @@ public class WebSocket extends WebSocketClient{
             case VLC_PAUSE_FILE:
                 commandString = VlcCommands.pauseFile();
                 break;
+            case VLC_PLAY_NEXT_MEDIA:
+                commandString = VlcCommands.playNextMedia();
+                break;
+            case VLC_PLAY_PREVIOUS_MEDIA:
+                commandString = VlcCommands.playPreviousMedia();
+                break;
+            case VLC_INCREASE_VOLUME:
+                commandString = VlcCommands.increaseVolume();
+                break;
+            case VLC_DECREASE_VOLUME:
+                commandString = VlcCommands.decreaseVolume();
+                break;
+            case VLC_MUTE_VOLUME:
+                commandString = VlcCommands.muteVolume();
+                break;
+            case VLC_FAST_FORWARD:
+                commandString = VlcCommands.fastForward();
+                break;
+            case VLC_REWIND:
+                commandString = VlcCommands.rewind();
+                break;
+
             default:
                 break;
         }

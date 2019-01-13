@@ -20,29 +20,81 @@
         android:id="@+id/vlc_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="34dp"
         android:text="@string/vlc_pause_player"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintBottom_toBottomOf="@+id/vlc_increase_volume"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vlc_increase_volume" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/vlc_increase_volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="74dp"
-        android:layout_marginBottom="146dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/vlc_increase_volume"
+        app:layout_constraintBottom_toTopOf="@+id/vlc_decrease_volume"
+        app:layout_constraintStart_toStartOf="@+id/vlc_decrease_volume" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/vlc_decrease_volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="40dp"
-        android:text="Button"
+        android:text="@string/vlc_decrease_volume"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/vlc_mute_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/vlc_mute_volume"
+        app:layout_constraintEnd_toEndOf="@+id/vlc_pause"
+        app:layout_constraintTop_toBottomOf="@+id/vlc_pause" />
+
+    <Button
+        android:id="@+id/vlc_fast_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/vlc_fast_forward"
+        app:layout_constraintBottom_toBottomOf="@+id/vlc_rewind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vlc_rewind" />
+
+    <Button
+        android:id="@+id/vlc_rewind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/vlc_rewind"
+        app:layout_constraintBottom_toTopOf="@+id/vlc_play_previous_media"
+        app:layout_constraintStart_toStartOf="@+id/vlc_play_previous_media" />
+
+    <Button
+        android:id="@+id/vlc_play_next_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="17dp"
+        android:text="@string/vlc_play_next_media"
+        app:layout_constraintStart_toStartOf="@+id/vlc_fast_forward"
+        app:layout_constraintTop_toBottomOf="@+id/vlc_fast_forward" />
+
+    <Button
+        android:id="@+id/vlc_play_previous_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/vlc_play_previous_media"
+        app:layout_constraintBottom_toTopOf="@+id/vlc_increase_volume"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>

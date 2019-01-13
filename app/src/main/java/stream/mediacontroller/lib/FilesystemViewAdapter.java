@@ -62,9 +62,9 @@ public class FilesystemViewAdapter extends RecyclerView.Adapter<FilesystemViewAd
                 } catch (JSONException e){/* Ignore */ }
 
                 if(clickedFile.isDirectory()){
+                    //TODO: show something to indicate that device is loading the requested files
                     MainActivity.webSocket.sendCommand(Commands.GENERAL_GET_FILES_AND_FOLDERS, additionalInfo);
                 }else{
-                    //TODO: send command to play the file
                     MainActivity.webSocket.sendCommand(Commands.VLC_PLAY_FILE, additionalInfo);
                 }
             }

@@ -32,5 +32,12 @@
     <!-- Vlc buttons -->
     <string name="vlc_browser_files">Browse Files</string>
     <string name="vlc_pause_player">Play/Pause</string>
+    <string name="vlc_play_next_media">Play next</string>
+    <string name="vlc_play_previous_media">Play previous</string>
+    <string name="vlc_mute_volume">Mute</string>
+    <string name="vlc_increase_volume">Volume Up</string>
+    <string name="vlc_decrease_volume">Volume Down</string>
+    <string name="vlc_fast_forward">Fast Forward</string>
+    <string name="vlc_rewind">Rewind</string>
 
 </resources>
