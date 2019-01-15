@@ -57,11 +57,11 @@ public class VlcButtonHandler extends AbstractButton{
     }
 
     private void setFastForwardButton(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_fast_forward), Commands.VLC_FAST_FORWARD);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.vlc_fast_forward), Commands.VLC_FAST_FORWARD);
     }
 
     private void setRewindButton(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_rewind), Commands.VLC_REWIND);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.vlc_rewind), Commands.VLC_REWIND);
     }
 
     private void setIncreaseVolumeButton(){
