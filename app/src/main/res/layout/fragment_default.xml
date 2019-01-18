@@ -83,4 +83,14 @@
         android:text="@string/volume_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/default-log-in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:text="@string/log_in"
+        app:layout_constraintBottom_toBottomOf="@+id/left-click"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/left-click" />
 </android.support.constraint.ConstraintLayout>

@@ -30,4 +30,16 @@
             android:defaultValue=""/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="login_category"
+        android:title="Log in">
+
+        <EditTextPreference
+            android:key="login_password"
+            android:title="Login password"
+            android:summary="Password used to log in"
+            android:defaultValue=""/>
+
+    </PreferenceCategory>
 </android.support.v7.preference.PreferenceScreen>

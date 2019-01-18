@@ -11,6 +11,11 @@ public enum Commands {
     // General
     GENERAL_GET_FILES_AND_FOLDERS,
 
+    // Keyboard
+    KEYBOARD_LOGIN,
+    KEYBOARD_INPUT_STRING,
+    KEYBOARD_PRESS_ENTER,
+
     // Mouse
     MOUSE_MOUSE_UP,
     MOUSE_MOUSE_DOWN,

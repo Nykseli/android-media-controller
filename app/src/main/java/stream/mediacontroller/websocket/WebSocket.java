@@ -13,6 +13,7 @@ import stream.mediacontroller.MainActivity;
 import stream.mediacontroller.command.AudioCommand;
 import stream.mediacontroller.command.ConfigCommand;
 import stream.mediacontroller.command.GeneralCommand;
+import stream.mediacontroller.command.KeyboardCommand;
 import stream.mediacontroller.command.MouseCommand;
 import stream.mediacontroller.command.VlcCommands;
 import stream.mediacontroller.crypto.Crypto;
@@ -152,6 +153,11 @@ public class WebSocket extends WebSocketClient{
                 break;
             case MOUSE_FAST_NETFLIX_FORWARD:
                 commandString = MouseCommand.fastNetflixForward();
+                break;
+
+            // Keyboard
+            case KEYBOARD_LOGIN:
+                commandString = KeyboardCommand.login();
                 break;
 
             // Vlc

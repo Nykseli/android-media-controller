@@ -3,6 +3,8 @@ package stream.mediacontroller.button;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONObject;
+
 import stream.mediacontroller.R;
 import stream.mediacontroller.websocket.Commands;
 
@@ -21,6 +23,7 @@ public class DefaultButtonHandler extends AbstractButton {
         this.setLeftClick();
         this.setIncreaseMasterVolume();
         this.setDecreaseMasterVolume();
+        this.setLogIn();
     }
 
     private void setLeftClick(){
@@ -49,5 +52,9 @@ public class DefaultButtonHandler extends AbstractButton {
 
     private void setDecreaseMasterVolume(){
         this.setHoldableButton((Button) this.view.findViewById(R.id.master_volume_down), Commands.AUDIO_DECREASE_MASTER_VOLUME);
+    }
+
+    private void setLogIn(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.default_log_in), Commands.KEYBOARD_LOGIN);
     }
 }

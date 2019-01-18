@@ -22,6 +22,7 @@
     <string name="button_left_click">Left Click</string>
     <string name="volume_up">Volume Up</string>
     <string name="volume_down">Volume Down</string>
+    <string name="log_in">Log in</string>
 
     <!-- Netflix buttons-->
     <string name="netflix_skip_intro">Skip Intro</string>

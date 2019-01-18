@@ -8,6 +8,7 @@ abstract class AbstractCommand {
     static final String AUDIO_INTERFACE = "audio";
     static final String CONFIG_INTERFACE= "config";
     static final String GENERAL_INTERFACE= "general";
+    static final String KEYBOARD_INTERFACE = "keyboard";
     static final String MOUSE_INTERFACE= "mouse";
     static final String VLC_INTERFACE = "vlc";
 

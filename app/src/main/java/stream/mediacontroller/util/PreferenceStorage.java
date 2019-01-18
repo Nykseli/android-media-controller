@@ -41,6 +41,12 @@ public  class PreferenceStorage {
     // We also need ne encryption key every time we crypt or decrypt message so to ram it goes!
     public static String SECURITY_CURRENT_ENCRYPTION_KEY = "";
 
+    // Login settings
+    /**
+     * Name of the storage that is used to save the log in password
+     */
+    public static final String LOG_IN_PASSWORD = "LOG_IN_PASSWORD_STORAGE";
+
     private SharedPreferences preference;
     private SharedPreferences.Editor editor;
 

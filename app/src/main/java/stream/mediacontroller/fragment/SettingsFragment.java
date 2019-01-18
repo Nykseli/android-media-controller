@@ -23,6 +23,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         this.initWebSocketOptions();
         this.initSecurityOptions();
+        this.initLoginOptions();
         //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -87,6 +88,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 }else {
                     MainActivity.infoPopUp.showShortMessage("Encryption key needs to be 16 characters long!");
                 }
+                return false;
+            }
+        });
+    }
+
+    private void initLoginOptions(){
+        final EditTextPreference loginKey = (EditTextPreference) findPreference("login_password");
+
+        loginKey.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                String valueString = newValue.toString();
+                MainActivity.preferenceStorage.saveString(PreferenceStorage.LOG_IN_PASSWORD, valueString);
                 return false;
             }
         });
