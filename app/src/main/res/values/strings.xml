@@ -29,6 +29,10 @@
     <string name="netflix_next_episode">Next Episode</string>
     <string name="netflix_fast_forward">Fast forward</string>
     <string name="netflix_rewind">Rewind</string>
+    <string name="netflix_play_pause">Play/Pause</string>
+    <string name="netflix_volume_up">Volume Up</string>
+    <string name="netflix_volume_down">Volume Down</string>
+    <string name="netflix_mute">Mute</string>
 
     <!-- Vlc buttons -->
     <string name="vlc_browser_files">Browse Files</string>

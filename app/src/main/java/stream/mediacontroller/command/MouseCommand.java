@@ -101,13 +101,4 @@ public class MouseCommand extends AbstractCommand {
 
     }
 
-    public static String rewindNetflixBackward(){
-        return getCommandArrayString(getPositionClick(205, 1011));
-
-    }
-
-    public static String fastNetflixForward(){
-        return getCommandArrayString(getPositionClick(324, 1020));
-
-    }
 }

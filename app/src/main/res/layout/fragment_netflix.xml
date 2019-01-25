@@ -12,21 +12,21 @@
         android:id="@+id/netflix_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/netflix_skip_intro"
-        app:layout_constraintEnd_toEndOf="@+id/netflix_forward"
-        app:layout_constraintStart_toStartOf="@+id/netflix_forward"
-        app:layout_constraintTop_toBottomOf="@+id/netflix_forward" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/netflix_episode"
+        app:layout_constraintStart_toStartOf="@+id/netflix_episode" />
 
     <Button
         android:id="@+id/netflix_episode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginBottom="109dp"
+        android:layout_marginBottom="33dp"
         android:text="@string/netflix_next_episode"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/netflix_intro"
+        app:layout_constraintEnd_toEndOf="@+id/netflix_volume_down"
+        app:layout_constraintStart_toStartOf="@+id/netflix_volume_up" />
 
     <Button
         android:id="@+id/netflix_backward"
@@ -43,9 +43,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="38dp"
+        android:layout_marginBottom="44dp"
         android:text="@string/netflix_fast_forward"
+        app:layout_constraintBottom_toTopOf="@+id/netflix_play_pause"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/netflix_volume_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/netflix_volume_up"
+        app:layout_constraintBottom_toTopOf="@+id/netflix_volume_down"
+        app:layout_constraintStart_toStartOf="@+id/netflix_volume_down" />
+
+    <Button
+        android:id="@+id/netflix_volume_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginBottom="135dp"
+        android:text="@string/netflix_volume_down"
         app:layout_constraintBottom_toBottomOf="@+id/netflix_backward"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/netflix_volume_mute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="62dp"
+        android:text="@string/netflix_mute"
+        app:layout_constraintBaseline_toBaselineOf="@+id/netflix_volume_down"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/netflix_play_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/netflix_play_pause"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/netflix_backward" />
+        app:layout_constraintStart_toEndOf="@+id/netflix_episode" />
 
 </android.support.constraint.ConstraintLayout>

@@ -148,16 +148,28 @@ public class WebSocket extends WebSocketClient{
             case MOUSE_NEXT_NETFLIX_EPISODE:
                 commandString = MouseCommand.nextNetflixEpisode();
                 break;
-            case MOUSE_REWIND_NETFLIX_BACKWARD:
-                commandString = MouseCommand.rewindNetflixBackward();
-                break;
-            case MOUSE_FAST_NETFLIX_FORWARD:
-                commandString = MouseCommand.fastNetflixForward();
-                break;
 
             // Keyboard
             case KEYBOARD_LOGIN:
                 commandString = KeyboardCommand.login();
+                break;
+            case KEYBOARD_FAST_NETFLIX_FORWARD:
+                commandString = KeyboardCommand.fastNetflixForward();
+                break;
+            case KEYBOARD_REWIND_NETFLIX_BACKWARD:
+                commandString = KeyboardCommand.rewindNetflixBackward();
+                break;
+            case KEYBOARD_NETFLIX_TOGGLE_PAUSE:
+                commandString = KeyboardCommand.netflixTogglePlayPause();
+                break;
+            case KEYBOARD_NETFLIX_VOLUME_UP:
+                commandString = KeyboardCommand.netflixVolumeUp();
+                break;
+            case KEYBOARD_NETFLIX_VOLUME_DOWN:
+                commandString = KeyboardCommand.netflixVolumeDown();
+                break;
+            case KEYBOARD_NETFLIX_VOLUME_MUTE:
+                commandString = KeyboardCommand.netflixMuteToggle();
                 break;
 
             // Vlc

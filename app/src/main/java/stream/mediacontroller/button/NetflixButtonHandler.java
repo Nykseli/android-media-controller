@@ -18,6 +18,10 @@ public class NetflixButtonHandler extends AbstractButton {
         this.setNextNetflixEpisode();
         this.setRewindNetflixBackward();
         this.setFastNetflixForward();
+        this.setNetflixPlayPause();
+        this.setNetflixVolumeUp();
+        this.setNetflixVolumeDown();
+        this.setNetflixVolumeMute();
     }
 
     private void setSkipNetflixIntro(){
@@ -29,10 +33,26 @@ public class NetflixButtonHandler extends AbstractButton {
     }
 
     private void setRewindNetflixBackward(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.MOUSE_REWIND_NETFLIX_BACKWARD);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.netflix_backward), Commands.KEYBOARD_REWIND_NETFLIX_BACKWARD);
     }
 
     private void setFastNetflixForward(){
-        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.MOUSE_FAST_NETFLIX_FORWARD);
+        this.setHoldableButton((Button) this.view.findViewById(R.id.netflix_forward), Commands.KEYBOARD_FAST_NETFLIX_FORWARD);
+    }
+
+    private void setNetflixPlayPause(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_play_pause), Commands.KEYBOARD_NETFLIX_TOGGLE_PAUSE);
+    }
+
+    private void setNetflixVolumeUp(){
+        this.setHoldableButton((Button) this.view.findViewById(R.id.netflix_volume_up), Commands.KEYBOARD_NETFLIX_VOLUME_UP);
+    }
+
+    private void setNetflixVolumeDown(){
+        this.setHoldableButton((Button) this.view.findViewById(R.id.netflix_volume_down), Commands.KEYBOARD_NETFLIX_VOLUME_DOWN);
+    }
+
+    private void setNetflixVolumeMute(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.netflix_volume_mute), Commands.KEYBOARD_NETFLIX_VOLUME_MUTE);
     }
 }
