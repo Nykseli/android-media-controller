@@ -184,6 +184,9 @@ public class WebSocket extends WebSocketClient{
             case VLC_PAUSE_FILE:
                 commandString = VlcCommands.pauseFile();
                 break;
+            case VLC_STOP_MEDIA:
+                commandString = VlcCommands.stopMedia();
+                break;
             case VLC_PLAY_NEXT_MEDIA:
                 commandString = VlcCommands.playNextMedia();
                 break;

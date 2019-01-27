@@ -33,6 +33,12 @@ public class VlcCommands extends AbstractCommand {
         return getCommandString(VLC_INTERFACE, commandString, additionalInfo);
     }
 
+    public static  String stopMedia(){
+        String commandString = "stopMedia";
+
+        return getCommandString(VLC_INTERFACE, commandString);
+    }
+
     public static String playNextMedia(){
         String commandString = "playNextMedia";
 

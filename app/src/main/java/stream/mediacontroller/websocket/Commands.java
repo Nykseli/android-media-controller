@@ -36,6 +36,7 @@ public enum Commands {
     // Vlc
     VLC_PLAY_FILE,
     VLC_PLAY_FILES,
+    VLC_STOP_MEDIA,
     VLC_PLAY_NEXT_MEDIA,
     VLC_PLAY_PREVIOUS_MEDIA,
     VLC_PAUSE_FILE,

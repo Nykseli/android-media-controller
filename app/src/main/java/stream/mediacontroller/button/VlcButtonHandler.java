@@ -21,6 +21,7 @@ public class VlcButtonHandler extends AbstractButton{
     public void initButtons() {
         this.setBrowserFiles();
         this.setPauseButton();
+        this.setStopMediaButton();
         this.setPlayNextButton();
         this.setPlayPreviousButton();
         this.setFastForwardButton();
@@ -46,6 +47,10 @@ public class VlcButtonHandler extends AbstractButton{
 
     private void setPauseButton(){
         this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_pause), Commands.VLC_PAUSE_FILE);
+    }
+
+    private void setStopMediaButton(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_stop), Commands.VLC_STOP_MEDIA);
     }
 
     private void setPlayNextButton(){

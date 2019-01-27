@@ -44,5 +44,6 @@
     <string name="vlc_decrease_volume">Volume Down</string>
     <string name="vlc_fast_forward">Fast Forward</string>
     <string name="vlc_rewind">Rewind</string>
+    <string name="vlc_stop">Stop</string>
 
 </resources>

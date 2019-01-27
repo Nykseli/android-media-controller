@@ -96,5 +96,15 @@
         app:layout_constraintBottom_toTopOf="@+id/vlc_increase_volume"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/vlc_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:text="@string/vlc_stop"
+        app:layout_constraintBottom_toBottomOf="@+id/vlc_browse_files"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vlc_browse_files" />
+
 
 </android.support.constraint.ConstraintLayout>
