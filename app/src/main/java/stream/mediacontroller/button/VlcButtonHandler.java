@@ -29,6 +29,8 @@ public class VlcButtonHandler extends AbstractButton{
         this.setIncreaseVolumeButton();
         this.setDecreaseVolumeButton();
         this.setMuteButton();
+        this.setCycleAudio();
+        this.setCycleSubtitle();
     }
 
     public void setBrowserFiles(){
@@ -77,7 +79,17 @@ public class VlcButtonHandler extends AbstractButton{
         this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_decrease_volume), Commands.VLC_DECREASE_VOLUME);
     }
 
-    private void setMuteButton(){
+    private void setMuteButton() {
         this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_mute_volume), Commands.VLC_MUTE_VOLUME);
     }
+
+    private void setCycleAudio(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_cycle_audio), Commands.VLC_CYCLE_AUDIO_TRACK);
+    }
+
+    private void setCycleSubtitle(){
+        this.setSingleClickButton((Button) this.view.findViewById(R.id.vlc_cycle_subtitle), Commands.VLC_CYCLE_SUBTITLE_TRACK);
+    }
+
+
 }

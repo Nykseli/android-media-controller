@@ -81,4 +81,15 @@ public class VlcCommands extends AbstractCommand {
         return getCommandString(VLC_INTERFACE, commandString);
     }
 
+    public static String cycleAudio(){
+        String commandString = "cycleAudioTrack";
+
+        return getCommandString(VLC_INTERFACE, commandString);
+    }
+    public static String cycleSubtitle(){
+        String commandString = "cycleSubtitleTrack";
+
+        return getCommandString(VLC_INTERFACE, commandString);
+    }
+
 }

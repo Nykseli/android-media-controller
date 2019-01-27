@@ -106,5 +106,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/vlc_browse_files" />
 
+    <Button
+        android:id="@+id/vlc_cycle_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/vlc_cycle_audio"
+        app:layout_constraintBottom_toTopOf="@+id/vlc_rewind"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/vlc_cycle_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/vlc_cycle_subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/vlc_fast_forward"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

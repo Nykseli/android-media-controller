@@ -193,6 +193,12 @@ public class WebSocket extends WebSocketClient{
             case VLC_PLAY_PREVIOUS_MEDIA:
                 commandString = VlcCommands.playPreviousMedia();
                 break;
+            case VLC_CYCLE_AUDIO_TRACK:
+                commandString = VlcCommands.cycleAudio();
+                break;
+            case VLC_CYCLE_SUBTITLE_TRACK:
+                commandString = VlcCommands.cycleSubtitle();
+                break;
             case VLC_INCREASE_VOLUME:
                 commandString = VlcCommands.increaseVolume();
                 break;

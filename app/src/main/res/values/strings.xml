@@ -45,5 +45,7 @@
     <string name="vlc_fast_forward">Fast Forward</string>
     <string name="vlc_rewind">Rewind</string>
     <string name="vlc_stop">Stop</string>
+    <string name="vlc_cycle_audio">Cycle Audio</string>
+    <string name="vlc_cycle_subtitle">Cycle Subtitle</string>
 
 </resources>
